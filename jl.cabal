@@ -13,6 +13,9 @@ build-type:          Simple
 extra-source-files:  README.md
 cabal-version:       >=1.10
 
+flag AttoParsecAeson
+  description: Data.Aeson.Parser was moved to a separate package with Aeson 2.2
+
 library
   hs-source-dirs:      src
   ghc-options:         -Wall  -O2
@@ -34,5 +37,9 @@ executable jl
   main-is:             Main.hs
   ghc-options:         -Wall -O2 -static
   build-depends:       base
-                     , jl, text, aeson >=2, aeson-pretty, containers, bytestring, mtl, optparse-simple, vector, conduit, conduit-extra
+                     , jl, text, aeson-pretty, containers, bytestring, mtl, optparse-simple, vector, conduit, conduit-extra
+  if flag(AttoParsecAeson)
+    build-depends:     aeson >=2.2, attoparsec-aeson
+  else
+    build-depends:     aeson <2.2
   default-language:    Haskell2010
