@@ -8,6 +8,7 @@
 module JL.Inferer where
 
 
+import           Control.Monad (foldM)
 import           Control.Monad.State.Strict
 import qualified Data.HashMap.Strict as HM
 import           Data.Map (Map)
