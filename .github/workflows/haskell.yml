@@ -12,7 +12,6 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
     strategy:
       matrix:
         ghc: ['8.8.4', '8.10.7', '9.0.2', '9.2.8', '9.4.8', '9.6.6', '9.8.2', '9.10.1']
@@ -20,6 +19,8 @@ jobs:
       fail-fast: false
 
     name: Build with GHC ${{ matrix.ghc }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+
     steps:
     - name: Checkout
       uses: actions/checkout@v4
